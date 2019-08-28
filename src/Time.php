@@ -3,8 +3,9 @@
 
 namespace fize\datetime;
 
+use DateTime;
 
-class Time
+class Time extends DateTime
 {
 
 }
