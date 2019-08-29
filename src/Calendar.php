@@ -3,7 +3,10 @@
 
 namespace fize\datetime;
 
-
+/**
+ * 历法类
+ * @package fize\datetime
+ */
 class Calendar
 {
 
@@ -149,7 +152,7 @@ class Calendar
      */
     public static function jdToJewish($juliandaycount, $hebrew = false, $fl = 0)
     {
-        return jdtojewish($juliandaycount, $hebrew , $fl);
+        return jdtojewish($juliandaycount, $hebrew, $fl);
     }
 
     /**
