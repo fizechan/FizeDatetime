@@ -1,2 +1,2 @@
 # FizeDatetime
-A common time, date operation class library
+时间日期操作库。

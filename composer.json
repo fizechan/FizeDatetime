@@ -1,6 +1,6 @@
 {
     "name": "fize/datetime",
-    "description": "A common time, date operation class library.",
+    "description": "时间日期操作库。",
     "license": "Apache-2.0",
     "authors": [
         {
@@ -11,6 +11,9 @@
     "require": {
 		"php": ">=5.4.0"
 	},
+    "require-dev": {
+        "phpunit/phpunit": "^8.0.0"
+    },
 	"autoload": {
         "psr-4": {
             "fize\\datetime\\": "src"

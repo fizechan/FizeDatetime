@@ -64,7 +64,10 @@ class Calendar
      */
     public static function easterDate($year = null)
     {
-        return easter_date($year);
+        if($year) {
+            return easter_date($year);
+        }
+        return easter_date();
     }
 
     /**
@@ -75,7 +78,10 @@ class Calendar
      */
     public static function easterDays($year = null, $method = 0)
     {
-        return easter_days($year, $method);
+        if($year) {
+            return easter_days($year, $method);
+        }
+        return easter_days();
     }
 
     /**

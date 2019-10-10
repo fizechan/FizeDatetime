@@ -69,6 +69,9 @@ class Date extends DateTime
      */
     public static function sunrise($timestamp, $format = null, $latitude = null, $longitude = null, $zenith = null, $gmt_offset = null)
     {
+        if(is_null($latitude)) {
+            return date_sunrise($timestamp, $format);
+        }
         return date_sunrise($timestamp, $format, $latitude, $longitude, $zenith, $gmt_offset);
     }
 
@@ -84,6 +87,9 @@ class Date extends DateTime
      */
     public static function sunset($timestamp, $format = null, $latitude = null, $longitude = null, $zenith = null, $gmt_offset = null)
     {
+        if(is_null($latitude)) {
+            return date_sunset($timestamp, $format);
+        }
         return date_sunset($timestamp, $format, $latitude, $longitude, $zenith, $gmt_offset);
     }
 
