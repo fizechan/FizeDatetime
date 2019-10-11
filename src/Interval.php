@@ -4,12 +4,29 @@
 namespace fize\datetime;
 
 use DateInterval;
+use DateTime;
 
 /**
- * 时间期间类
+ * 时间间隔类
  * @package fize\datetime
  */
 class Interval extends DateInterval
 {
 
+    /**
+     * 获取两个时间的区间
+     * @param mixed $dt1 时间字符串或者DateTime对象
+     * @param mixed $dt2 时间字符串或者DateTime对象
+     * @return DateInterval
+     */
+    public static function diff($dt1, $dt2)
+    {
+        if(is_string($dt1)) {
+            $dt1 = new DateTime($dt1);
+        }
+        if(is_string($dt2)) {
+            $dt2 = new DateTime($dt2);
+        }
+        return $dt2->diff($dt1);
+    }
 }

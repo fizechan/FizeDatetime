@@ -6,6 +6,7 @@ namespace fize\datetime;
 
 /**
  * 历法类
+ * @notice 需要开启扩展：ext-calendar
  * @package fize\datetime
  */
 class Calendar
@@ -17,6 +18,7 @@ class Calendar
      * @param int $month 选定历法中的某月
      * @param int $year 选定历法中的某年
      * @return int
+     *
      */
     public static function daysInMonth($calendar, $month, $year)
     {

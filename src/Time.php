@@ -36,7 +36,7 @@ class Time extends Date
     }
 
     /**
-     * 根据区域设置格式化 GMT/UTC 时间／日期
+     * 根据区域设置格式化 GMT/UTC 时间／日期,返回时间是格林威治标准时（GMT）。
      * @param string $format 格式化
      * @param int $timestamp 时间戳
      * @return string
@@ -95,6 +95,7 @@ class Time extends Date
 
     /**
      * 解析由 strftime() 生成的日期／时间
+     * @notice 此函数未在 Windows 平台下实现
      * @param string $date 被解析的字符串
      * @param string $format date所使用的格式
      * @return array 失败返回false

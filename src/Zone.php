@@ -4,6 +4,7 @@
 namespace fize\datetime;
 
 use DateTimeZone;
+use DateTime;
 
 /**
  * 时区类
@@ -11,6 +12,30 @@ use DateTimeZone;
  */
 class Zone extends DateTimeZone
 {
+
+    /**
+     * 取得时间的时区
+     * @param DateTime $dt 时间
+     * @return DateTimeZone
+     */
+    public static function get(DateTime $dt)
+    {
+        return $dt->getTimezone();
+    }
+
+    /**
+     * 设置时间的时区
+     * @param DateTime $dt 时间
+     * @param mixed $timezone 时区对象或者时区标识
+     * @return DateTime
+     */
+    public static function set(DateTime $dt, $timezone)
+    {
+        if(is_string($timezone)) {
+            $timezone = new DateTimeZone($timezone);
+        }
+        return $dt->setTimezone($timezone);
+    }
 
     /**
      * 取得一个脚本中所有日期时间函数所使用的默认时区
