@@ -8,15 +8,14 @@ use DateTime;
 
 /**
  * 时间间隔类
- * @package fize\datetime
  */
 class Interval extends DateInterval
 {
 
     /**
      * 获取两个时间的区间
-     * @param mixed $dt1 时间字符串或者DateTime对象
-     * @param mixed $dt2 时间字符串或者DateTime对象
+     * @param string|DateTime $dt1 时间字符串或者DateTime对象
+     * @param string|DateTime $dt2 时间字符串或者DateTime对象
      * @return DateInterval
      */
     public static function diff($dt1, $dt2)

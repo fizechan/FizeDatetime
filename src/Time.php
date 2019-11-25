@@ -5,15 +5,14 @@ namespace fize\datetime;
 
 /**
  * 时间类
- * @package fize\datetime
  */
 class Time extends Date
 {
 
     /**
      * 取得当前时间
-     * @param bool $return_float 当其设为 TRUE 时，会返回一个浮点数而不是一个数组。
-     * @return mixed 默认返回一个 array。如果 return_float 设置了则会返回一个 float。
+     * @param bool $return_float 是否返回浮点型
+     * @return array|float 默认返回一个 array。如果 return_float 设置了则会返回一个 float。
      */
     public static function gettimeofday($return_float = null)
     {
@@ -48,8 +47,12 @@ class Time extends Date
 
     /**
      * 取得本地时间
+     *
+     * 参数 `$is_associative` :
+     *   如果设为 FALSE 或未提供则返回的是普通的数字索引数组。
+     *   如果该参数设为 TRUE 则 localtime() 函数返回包含有所有从 C 的 localtime 函数调用所返回的不同单元的关联数组。
      * @param int $timestamp 时间戳
-     * @param bool $is_associative 如果设为 FALSE 或未提供则返回的是普通的数字索引数组。如果该参数设为 TRUE 则 localtime() 函数返回包含有所有从 C 的 localtime 函数调用所返回的不同单元的关联数组。
+     * @param bool $is_associative 是否返回关联数组
      * @return array
      */
     public static function localtime($timestamp = null, $is_associative = null)
@@ -59,7 +62,7 @@ class Time extends Date
 
     /**
      * 返回当前 Unix 时间戳和微秒数
-     * @param bool $get_as_float 如果给出了get_as_float参数并且其值等价于 TRUE，microtime() 将返回一个浮点数。
+     * @param bool $get_as_float 是否返回浮点数
      * @return mixed
      */
     public static function microtime($get_as_float = null)
@@ -107,7 +110,10 @@ class Time extends Date
 
     /**
      * 将任何字符串的日期时间描述解析为 Unix 时间戳
-     * @param string $time 日期/时间字符串。正确格式的说明详见 日期与时间格式。
+     *
+     * 参数 `$time` :
+     *   正确格式的说明详见 日期与时间格式。
+     * @param string $time 日期/时间字符串
      * @param int $now 用来计算返回值的时间戳。
      * @return int 失败返回false
      */

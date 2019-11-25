@@ -7,15 +7,18 @@ use DateTime;
 
 /**
  * 日期类
- * @package fize\datetime
  */
 class Date extends DateTime
 {
 
     /**
-     * 检查由参数构成的日期的合法性。如果每个参数都正确定义了则会被认为是有效的。
+     * 检查由参数构成的日期的合法性。
+     *
+     * 如果每个参数都正确定义了则会被认为是有效的。
+     * 参数 `$day` :
+     *   闰年已经考虑进去了。
      * @param int $month month 的值是从 1 到 12。
-     * @param int $day Day 的值在给定的 month 所应该具有的天数范围之内，闰年已经考虑进去了。
+     * @param int $day Day 的值在给定的 month 所应该具有的天数范围之内
      * @param int $year year 的值是从 1 到 32767。
      * @return bool
      */

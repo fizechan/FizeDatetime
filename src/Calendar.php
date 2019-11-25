@@ -7,7 +7,6 @@ namespace fize\datetime;
 /**
  * 历法类
  * @notice 需要开启扩展：ext-calendar
- * @package fize\datetime
  */
 class Calendar
 {
@@ -26,8 +25,8 @@ class Calendar
     }
 
     /**
-     * 转换Julian Day计数到一个支持的历法
-     * @param int $jd 一个Julian day天数的整数数字
+     * 转换 Julian Day 计数到一个支持的历法
+     * @param int $jd 一个 Julian day 天数的整数数字
      * @param int $calendar 要转换成的历法
      * @return array
      */
@@ -38,7 +37,10 @@ class Calendar
 
     /**
      * 返回选定历法的信息
-     * @param int $calendar 返回信息所指定的历法名称，如果没有指定历法，将返回所有历法。
+     *
+     * 参数 `$calendar` :
+     *   如果没有指定历法，将返回所有历法。
+     * @param int $calendar 返回信息所指定的历法名称
      * @return array
      */
     public static function info($calendar = -1)
@@ -48,10 +50,19 @@ class Calendar
 
     /**
      * 从一个支持的历法转变为Julian Day计数
-     * @param int $calendar 选定的历法，可以是CAL_GREGORIAN，CAL_JULIAN，CAL_JEWISH或CAL_FRENCH中的某一个。
-     * @param int $month 数字形式的月份，根据选定的calendar历法来确定范围。
-     * @param int $day 数字形式的日期，根据选定的calendar历法来确定范围
-     * @param int $year 数字形式的年份，根据选定的calendar历法来确定范围
+     *
+     * 参数 `$calendar` :
+     *   可以是CAL_GREGORIAN，CAL_JULIAN，CAL_JEWISH或CAL_FRENCH中的某一个。
+     * 参数 `$month` :
+     *   根据选定的 calendar 历法来确定范围。
+     * 参数 `$day` :
+     *   根据选定的calendar历法来确定范围。
+     * 参数 `$year` :
+     *   根据选定的calendar历法来确定范围。
+     * @param int $calendar 选定的历法
+     * @param int $month 数字形式的月份
+     * @param int $day 数字形式的日期
+     * @param int $year 数字形式的年份
      * @return int
      */
     public static function toJd($calendar, $month, $day, $year)
@@ -61,7 +72,10 @@ class Calendar
 
     /**
      * 得到指定年份的复活节午夜时的Unix时间戳。
-     * @param int $year 1970年至2037年之间的数字形式的年份。缺省的默认值是当年。
+     *
+     * 参数 `$year` :
+     *   缺省的默认值是当年。
+     * @param int $year 1970年至2037年之间的数字形式的年份
      * @return int
      */
     public static function easterDate($year = null)
@@ -74,8 +88,11 @@ class Calendar
 
     /**
      * 得到指定年份的3月21日到复活节之间的天数
+     *
+     * 参数 `$method` :
+     *   更多可用的常量参考 calendar constants
      * @param int $year 正数形式的年份
-     * @param int $method 更多可用的常量参考calendar constants
+     * @param int $method 方式
      * @return int
      */
     public static function easterDays($year = null, $method = 0)
@@ -87,10 +104,10 @@ class Calendar
     }
 
     /**
-     * 从一个French Republican历法的日期得到Julian Day计数。
-     * @param int $month 月份的范围是1到13。
-     * @param int $day 日期的范围是1到30。
-     * @param int $year 年份的范围是1到14。
+     * 从一个 French Republican 历法的日期得到 Julian Day 计数。
+     * @param int $month 月份的范围是 1 到 13。
+     * @param int $day 日期的范围是 1 到 30。
+     * @param int $year 年份的范围是 1 到 14。
      * @return int
      */
     public static function frenchToJd($month, $day, $year)
@@ -99,7 +116,7 @@ class Calendar
     }
 
     /**
-     * 转变一个Gregorian历法日期到Julian Day计数
+     * 转变一个 Gregorian 历法日期到 Julian Day 计数
      * @param int $month 月份的范围是 1（January）到 12（December）。
      * @param int $day 日期的范围是 1到 31。
      * @param int $year 年份的范围是 -4714 到 9999。
@@ -112,7 +129,7 @@ class Calendar
 
     /**
      * 返回星期的日期
-     * @param int $julianday 一个julian天数。
+     * @param int $julianday 一个 julian 天数。
      * @param int $mode 0、1、2
      * @return mixed
      */
@@ -123,7 +140,7 @@ class Calendar
 
     /**
      * 返回月份的名称
-     * @param int $julianday 用来计算的julian天数
+     * @param int $julianday 用来计算的 julian 天数
      * @param int $mode 指定使用哪种历法和月份名称的形式
      * @return string
      */
@@ -133,8 +150,8 @@ class Calendar
     }
 
     /**
-     * 转变一个Julian Day计数到French Republican历法的日期
-     * @param int $juliandaycount 一个julian天数
+     * 转变一个 Julian Day 计数到 French Republican 历法的日期
+     * @param int $juliandaycount 一个 julian 天数
      * @return string
      */
     public static function jdToFrench($juliandaycount)
@@ -143,8 +160,8 @@ class Calendar
     }
 
     /**
-     * 转变一个Julian Day计数为Gregorian历法日期
-     * @param int $julianday 一个julian天数
+     * 转变一个 Julian Day 计数为 Gregorian 历法日期
+     * @param int $julianday 一个 julian 天数
      * @return string
      */
     public static function jdToGregorian($julianday)
@@ -153,10 +170,13 @@ class Calendar
     }
 
     /**
-     * 转换一个julian天数为Jewish历法的日期
-     * @param int $juliandaycount 一个julian天数
-     * @param bool $hebrew 如果参数 hebrew设置为 TRUE，参数fl可用于希伯莱语的格式。
-     * @param int $fl 可用的格式有： CAL_JEWISH_ADD_ALAFIM_GERESH, CAL_JEWISH_ADD_ALAFIM, CAL_JEWISH_ADD_GERESHAYIM.
+     * 转换一个 julian 天数为 Jewish 历法的日期
+     *
+     * 参数 `$fl` :
+     *   可用的格式有： CAL_JEWISH_ADD_ALAFIM_GERESH, CAL_JEWISH_ADD_ALAFIM, CAL_JEWISH_ADD_GERESHAYIM.
+     * @param int $juliandaycount 一个 julian 天数
+     * @param bool $hebrew 是否可用于希伯莱语的格式
+     * @param int $fl 希伯莱语的格式
      * @return string
      */
     public static function jdToJewish($juliandaycount, $hebrew = false, $fl = 0)
@@ -165,8 +185,8 @@ class Calendar
     }
 
     /**
-     * 转变一个Julian Day计数到Julian历法的日期
-     * @param int $julianday 一个julian天数
+     * 转变一个 Julian Day 计数到 Julian 历法的日期
+     * @param int $julianday 一个 julian 天数
      * @return string
      */
     public static function jdToJulian($julianday)
@@ -175,8 +195,8 @@ class Calendar
     }
 
     /**
-     * 转变Julian Day计数为一个Unix时间戳
-     * @param int $jday 一个在 2440588 到 2465342 之间的julian天数
+     * 转变 Julian Day 计数为一个 Unix 时间戳
+     * @param int $jday 一个在 2440588 到 2465342 之间的 julian 天数
      * @return int
      */
     public static function jdToUnix($jday)
@@ -185,7 +205,7 @@ class Calendar
     }
 
     /**
-     * 转变一个Jewish历法的日期为一个Julian Day计数
+     * 转变一个 Jewish 历法的日期为一个 Julian Day 计数
      * @param int $month 在1到13之间的月份
      * @param int $day 在1到30日之间的日子
      * @param int $year 在1到9999之间的年份
@@ -197,7 +217,7 @@ class Calendar
     }
 
     /**
-     * 转变一个Julian历法的日期为Julian Day计数
+     * 转变一个 Julian 历法的日期为 Julian Day 计数
      * @param int $month 月份的范围从 1 (January) 到 12 ( December)
      * @param int $day 日期的范围从 1 到 31
      * @param int $year 年份的范围从 -4713 到 9999
@@ -209,8 +229,8 @@ class Calendar
     }
 
     /**
-     * 转变Unix时间戳为Julian Day计数
-     * @param int $timestamp 一个用于转变的时间戳。
+     * 转变 Unix 时间戳为 Julian Day 计数
+     * @param int $timestamp 一个用于转变的时间戳
      * @return int
      */
     public static function unixToJd($timestamp = 0)

@@ -8,7 +8,6 @@ use DateTime;
 
 /**
  * 时区类
- * @package fize\datetime
  */
 class Zone extends DateTimeZone
 {
@@ -48,7 +47,10 @@ class Zone extends DateTimeZone
 
     /**
      * 设定用于一个脚本中所有日期时间函数的默认时区
-     * @param string $timezone_identifier 时区标识符，例如 UTC 或 Europe/Lisbon。合法标识符列表见所支持的时区列表。
+     *
+     * 参数 `$timezone_identifier` :
+     *   例如 UTC 或 Europe/Lisbon。合法标识符列表见所支持的时区列表。
+     * @param string $timezone_identifier 时区标识符
      * @return bool
      */
     public static function defaultSet($timezone_identifier)
@@ -69,7 +71,7 @@ class Zone extends DateTimeZone
     }
 
     /**
-     * 获取timezonedb的版本
+     * 获取 timezonedb 的版本
      * @return string
      */
     public static function versionGet()

@@ -1,7 +1,7 @@
 {
     "name": "fize/datetime",
     "description": "时间日期操作库。",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "FizeChan",

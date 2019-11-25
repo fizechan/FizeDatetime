@@ -9,15 +9,14 @@ use DateTime;
 
 /**
  * 时间周期类
- * @package fize\datetime
  */
 class Period extends DatePeriod
 {
 
     /**
      * 两个时间的讲个迭代器
-     * @param mixed $start 开始时间
-     * @param mixed $end 结束时间
+     * @param string|DateTime $start 开始时间
+     * @param string|DateTime  $end 结束时间
      * @param DateInterval $interval 间隔时间
      * @return DatePeriod
      */
