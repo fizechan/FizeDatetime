@@ -1,11 +1,9 @@
 <?php
 
-
-
 use PHPUnit\Framework\TestCase;
 use fize\datetime\Zone;
 
-class ZoneTest extends TestCase
+class TestZone extends TestCase
 {
 
     public function testGet()

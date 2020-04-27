@@ -1,13 +1,12 @@
 <?php
 
-
 namespace fize\datetime;
 
-use DateTimeZone;
 use DateTime;
+use DateTimeZone;
 
 /**
- * 时区类
+ * 时区
  */
 class Zone extends DateTimeZone
 {
@@ -24,13 +23,13 @@ class Zone extends DateTimeZone
 
     /**
      * 设置时间的时区
-     * @param DateTime $dt 时间
-     * @param mixed $timezone 时区对象或者时区标识
+     * @param DateTime $dt       时间
+     * @param mixed    $timezone 时区对象或者时区标识
      * @return DateTime
      */
     public static function set(DateTime $dt, $timezone)
     {
-        if(is_string($timezone)) {
+        if (is_string($timezone)) {
             $timezone = new DateTimeZone($timezone);
         }
         return $dt->setTimezone($timezone);
@@ -60,9 +59,9 @@ class Zone extends DateTimeZone
 
     /**
      * 从缩写中返回时区名称
-     * @param string $abbr 时区缩写
-     * @param int $gmtOffset 与格林尼治时间的偏差(以秒为单位)。
-     * @param int $isdst 夏令时设置
+     * @param string $abbr      时区缩写
+     * @param int    $gmtOffset 与格林尼治时间的偏差(以秒为单位)。
+     * @param int    $isdst     夏令时设置
      * @return string 失败返回false
      */
     public static function nameFromAbbr($abbr, $gmtOffset = null, $isdst = null)

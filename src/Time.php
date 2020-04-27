@@ -1,10 +1,9 @@
 <?php
 
-
 namespace fize\datetime;
 
 /**
- * 时间类
+ * 时间
  */
 class Time extends Date
 {
@@ -21,12 +20,12 @@ class Time extends Date
 
     /**
      * 取得 GMT 日期的 UNIX 时间戳
-     * @param int $hour 小时
+     * @param int $hour   小时
      * @param int $minute 分钟
      * @param int $second 秒
-     * @param int $month 月
-     * @param int $day 日
-     * @param int $year 年
+     * @param int $month  月
+     * @param int $day    日
+     * @param int $year   年
      * @return int
      */
     public static function gmmktime($hour = null, $minute = null, $second = null, $month = null, $day = null, $year = null)
@@ -36,8 +35,8 @@ class Time extends Date
 
     /**
      * 根据区域设置格式化 GMT/UTC 时间／日期,返回时间是格林威治标准时（GMT）。
-     * @param string $format 格式化
-     * @param int $timestamp 时间戳
+     * @param string $format    格式化
+     * @param int    $timestamp 时间戳
      * @return string
      */
     public static function gmstrftime($format, $timestamp = null)
@@ -51,7 +50,7 @@ class Time extends Date
      * 参数 `$is_associative` :
      *   如果设为 FALSE 或未提供则返回的是普通的数字索引数组。
      *   如果该参数设为 TRUE 则 localtime() 函数返回包含有所有从 C 的 localtime 函数调用所返回的不同单元的关联数组。
-     * @param int $timestamp 时间戳
+     * @param int  $timestamp      时间戳
      * @param bool $is_associative 是否返回关联数组
      * @return array
      */
@@ -72,12 +71,12 @@ class Time extends Date
 
     /**
      * 取得一个日期的 Unix 时间戳
-     * @param int $hour 小时
+     * @param int $hour   小时
      * @param int $minute 分钟
      * @param int $second 秒
-     * @param int $month 月
-     * @param int $day 日
-     * @param int $year 年
+     * @param int $month  月
+     * @param int $day    日
+     * @param int $year   年
      * @return int 失败时返回false
      */
     public static function mktime($hour = null, $minute = null, $second = null, $month = null, $day = null, $year = null)
@@ -87,8 +86,8 @@ class Time extends Date
 
     /**
      * 根据区域设置格式化本地时间／日期
-     * @param string $format 格式化
-     * @param int $timestamp 时间戳
+     * @param string $format    格式化
+     * @param int    $timestamp 时间戳
      * @return string
      */
     public static function strftime($format, $timestamp = null)
@@ -99,7 +98,7 @@ class Time extends Date
     /**
      * 解析由 strftime() 生成的日期／时间
      * @notice 此函数未在 Windows 平台下实现
-     * @param string $date 被解析的字符串
+     * @param string $date   被解析的字符串
      * @param string $format date所使用的格式
      * @return array 失败返回false
      */
@@ -114,12 +113,12 @@ class Time extends Date
      * 参数 `$time` :
      *   正确格式的说明详见 日期与时间格式。
      * @param string $time 日期/时间字符串
-     * @param int $now 用来计算返回值的时间戳。
+     * @param int    $now  用来计算返回值的时间戳。
      * @return int 失败返回false
      */
     public static function strtotime($time, $now = null)
     {
-        if(is_null($now)) {
+        if (is_null($now)) {
             $now = time();
         }
         return strtotime($time, $now);

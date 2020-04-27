@@ -1,13 +1,12 @@
 <?php
 
-
 namespace fize\datetime;
 
 use DateInterval;
 use DateTime;
 
 /**
- * 时间间隔类
+ * 间隔
  */
 class Interval extends DateInterval
 {
@@ -20,10 +19,10 @@ class Interval extends DateInterval
      */
     public static function diff($dt1, $dt2)
     {
-        if(is_string($dt1)) {
+        if (is_string($dt1)) {
             $dt1 = new DateTime($dt1);
         }
-        if(is_string($dt2)) {
+        if (is_string($dt2)) {
             $dt2 = new DateTime($dt2);
         }
         return $dt2->diff($dt1);

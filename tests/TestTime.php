@@ -4,7 +4,7 @@
 use fize\datetime\Time;
 use PHPUnit\Framework\TestCase;
 
-class TimeTest extends TestCase
+class TestTime extends TestCase
 {
 
     public function testGettimeofday()
@@ -75,7 +75,7 @@ class TimeTest extends TestCase
             self::assertFalse(false);
             return;
         }
-        
+
         $format = '%d/%m/%Y %H:%M:%S';
         $strf = strftime($format);
         var_dump($strf);

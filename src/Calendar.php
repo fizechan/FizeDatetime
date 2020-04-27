@@ -1,11 +1,9 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
-
 
 namespace fize\datetime;
 
 /**
- * 历法类
+ * 历法
  * @notice 需要开启扩展：ext-calendar
  */
 class Calendar
@@ -14,8 +12,8 @@ class Calendar
     /**
      * 返回某个历法中某年中某月的天数
      * @param int $calendar 用来计算的某个历法
-     * @param int $month 选定历法中的某月
-     * @param int $year 选定历法中的某年
+     * @param int $month    选定历法中的某月
+     * @param int $year     选定历法中的某年
      * @return int
      *
      */
@@ -26,7 +24,7 @@ class Calendar
 
     /**
      * 转换 Julian Day 计数到一个支持的历法
-     * @param int $jd 一个 Julian day 天数的整数数字
+     * @param int $jd       一个 Julian day 天数的整数数字
      * @param int $calendar 要转换成的历法
      * @return array
      */
@@ -60,9 +58,9 @@ class Calendar
      * 参数 `$year` :
      *   根据选定的calendar历法来确定范围。
      * @param int $calendar 选定的历法
-     * @param int $month 数字形式的月份
-     * @param int $day 数字形式的日期
-     * @param int $year 数字形式的年份
+     * @param int $month    数字形式的月份
+     * @param int $day      数字形式的日期
+     * @param int $year     数字形式的年份
      * @return int
      */
     public static function toJd($calendar, $month, $day, $year)
@@ -80,7 +78,7 @@ class Calendar
      */
     public static function easterDate($year = null)
     {
-        if($year) {
+        if ($year) {
             return easter_date($year);
         }
         return easter_date();
@@ -91,13 +89,13 @@ class Calendar
      *
      * 参数 `$method` :
      *   更多可用的常量参考 calendar constants
-     * @param int $year 正数形式的年份
+     * @param int $year   正数形式的年份
      * @param int $method 方式
      * @return int
      */
     public static function easterDays($year = null, $method = 0)
     {
-        if($year) {
+        if ($year) {
             return easter_days($year, $method);
         }
         return easter_days();
@@ -106,8 +104,8 @@ class Calendar
     /**
      * 从一个 French Republican 历法的日期得到 Julian Day 计数。
      * @param int $month 月份的范围是 1 到 13。
-     * @param int $day 日期的范围是 1 到 30。
-     * @param int $year 年份的范围是 1 到 14。
+     * @param int $day   日期的范围是 1 到 30。
+     * @param int $year  年份的范围是 1 到 14。
      * @return int
      */
     public static function frenchToJd($month, $day, $year)
@@ -118,8 +116,8 @@ class Calendar
     /**
      * 转变一个 Gregorian 历法日期到 Julian Day 计数
      * @param int $month 月份的范围是 1（January）到 12（December）。
-     * @param int $day 日期的范围是 1到 31。
-     * @param int $year 年份的范围是 -4714 到 9999。
+     * @param int $day   日期的范围是 1到 31。
+     * @param int $year  年份的范围是 -4714 到 9999。
      * @return int
      */
     public static function gregorianToJd($month, $day, $year)
@@ -130,7 +128,7 @@ class Calendar
     /**
      * 返回星期的日期
      * @param int $julianday 一个 julian 天数。
-     * @param int $mode 0、1、2
+     * @param int $mode      0、1、2
      * @return mixed
      */
     public static function jdDayOfWeek($julianday, $mode = 0)
@@ -141,7 +139,7 @@ class Calendar
     /**
      * 返回月份的名称
      * @param int $julianday 用来计算的 julian 天数
-     * @param int $mode 指定使用哪种历法和月份名称的形式
+     * @param int $mode      指定使用哪种历法和月份名称的形式
      * @return string
      */
     public static function jdMonthName($julianday, $mode)
@@ -174,9 +172,9 @@ class Calendar
      *
      * 参数 `$fl` :
      *   可用的格式有： CAL_JEWISH_ADD_ALAFIM_GERESH, CAL_JEWISH_ADD_ALAFIM, CAL_JEWISH_ADD_GERESHAYIM.
-     * @param int $juliandaycount 一个 julian 天数
-     * @param bool $hebrew 是否可用于希伯莱语的格式
-     * @param int $fl 希伯莱语的格式
+     * @param int  $juliandaycount 一个 julian 天数
+     * @param bool $hebrew         是否可用于希伯莱语的格式
+     * @param int  $fl             希伯莱语的格式
      * @return string
      */
     public static function jdToJewish($juliandaycount, $hebrew = false, $fl = 0)
@@ -207,8 +205,8 @@ class Calendar
     /**
      * 转变一个 Jewish 历法的日期为一个 Julian Day 计数
      * @param int $month 在1到13之间的月份
-     * @param int $day 在1到30日之间的日子
-     * @param int $year 在1到9999之间的年份
+     * @param int $day   在1到30日之间的日子
+     * @param int $year  在1到9999之间的年份
      * @return int
      */
     public static function jewishToJd($month, $day, $year)
@@ -219,8 +217,8 @@ class Calendar
     /**
      * 转变一个 Julian 历法的日期为 Julian Day 计数
      * @param int $month 月份的范围从 1 (January) 到 12 ( December)
-     * @param int $day 日期的范围从 1 到 31
-     * @param int $year 年份的范围从 -4713 到 9999
+     * @param int $day   日期的范围从 1 到 31
+     * @param int $year  年份的范围从 -4713 到 9999
      * @return int
      */
     public static function julianToJd($month, $day, $year)

@@ -1,17 +1,15 @@
 <?php
-/** @noinspection PhpComposerExtensionStubsInspection */
-
 
 use fize\datetime\Calendar;
 use PHPUnit\Framework\TestCase;
 
-class CalendarTest extends TestCase
+class TestCalendar extends TestCase
 {
 
     public function testDaysInMonth()
     {
         $days = Calendar::daysInMonth(CAL_GREGORIAN, 2, 2019);
-        self::assertEquals($days, 28);
+        self::assertEquals(28, $days);
     }
 
     public function testFromJd()
@@ -19,7 +17,7 @@ class CalendarTest extends TestCase
         $today = unixtojd(mktime(0, 0, 0, 8, 16, 2003));
         $cal = Calendar::fromJd($today, CAL_GREGORIAN);
         var_dump($cal);
-        
+
         self::assertIsArray($cal);
         self::assertNotEmpty($cal);
     }

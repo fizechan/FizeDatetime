@@ -4,7 +4,7 @@
 use fize\datetime\Date;
 use PHPUnit\Framework\TestCase;
 
-class DateTest extends TestCase
+class TestDate extends TestCase
 {
 
     public function testCheck()
