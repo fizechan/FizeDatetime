@@ -126,4 +126,18 @@ class Date extends DateTime
     {
         return idate($format, $timestamp);
     }
+
+    /**
+     * 获取日期在指定月数后的对应日期，该月没有这一天时则为最后一天。
+     * @param string $date   日期，格式Y-m-d
+     * @param int    $months 月数
+     * @return string
+     */
+    public static function getAfter($date, $months)
+    {
+        list($sYear, $sMonth) = explode('-', $date);
+        $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
+        $nextDate = date("Y-m-d", strtotime("+" . ($months) . " month", strtotime($date)));
+        return $nextDate > $monthend ? $monthend : $nextDate;
+    }
 }
