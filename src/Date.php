@@ -128,16 +128,21 @@ class Date extends DateTime
     }
 
     /**
-     * 获取日期在指定月数后的对应日期，该月没有这一天时则为最后一天。
+     * 获取日期在指定时间后的对应日期，该月没有这一天时则为最后一天。
      * @param string $date   日期，格式Y-m-d
      * @param int    $months 月数
+     * @param int    $days   天数
      * @return string
      */
-    public static function getAfter($date, $months)
+    public static function getAfter($date, $months, $days = 0)
     {
         list($sYear, $sMonth) = explode('-', $date);
         $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
         $nextDate = date("Y-m-d", strtotime("+" . ($months) . " month", strtotime($date)));
-        return $nextDate > $monthend ? $monthend : $nextDate;
+        $currDate = $nextDate > $monthend ? $monthend : $nextDate;
+        if ($days) {
+            $currDate = date("Y-m-d", strtotime("+" . ($days) . " day", strtotime($currDate)));
+        }
+        return $currDate > $monthend ? $monthend : $currDate;
     }
 }

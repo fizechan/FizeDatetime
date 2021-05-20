@@ -92,4 +92,19 @@ class TestDate extends TestCase
         self::assertIsInt($idate);
         self::assertEquals($idate, date('Y'));
     }
+
+    public function testGetAfter()
+    {
+        $date = Date::getAfter('2021-01-30', 1);
+        self::assertEquals('2021-02-28', $date);
+
+        $date = Date::getAfter('2021-01-5', 1, 5);
+        self::assertEquals('2021-02-10', $date);
+
+        $date = Date::getAfter('2021-01-26', 1, 2);
+        self::assertEquals('2021-02-28', $date);
+
+        $date = Date::getAfter('2021-01-26', 1, 5);
+        self::assertEquals('2021-02-28', $date);
+    }
 }
