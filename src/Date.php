@@ -134,7 +134,7 @@ class Date extends DateTime
      * @param int    $days   天数
      * @return string
      */
-    public static function getAfter($date, $months, $days = 0)
+    public static function getAfter(string $date, int $months, int $days = 0): string
     {
         list($sYear, $sMonth) = explode('-', $date);
         $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
