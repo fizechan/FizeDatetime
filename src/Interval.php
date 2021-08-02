@@ -17,7 +17,7 @@ class Interval extends DateInterval
      * @param string|DateTime $dt2 时间字符串或者DateTime对象
      * @return DateInterval
      */
-    public static function diff($dt1, $dt2)
+    public static function diff($dt1, $dt2): DateInterval
     {
         if (is_string($dt1)) {
             $dt1 = new DateTime($dt1);

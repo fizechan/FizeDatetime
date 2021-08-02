@@ -19,7 +19,7 @@ class Period extends DatePeriod
      * @param DateInterval    $interval 间隔时间
      * @return DatePeriod
      */
-    public static function between($start, $end, DateInterval $interval)
+    public static function between($start, $end, DateInterval $interval): DatePeriod
     {
         if (is_string($start)) {
             $start = new DateTime($start);

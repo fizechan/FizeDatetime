@@ -17,7 +17,7 @@ class Calendar
      * @return int
      *
      */
-    public static function daysInMonth($calendar, $month, $year)
+    public static function daysInMonth(int $calendar, int $month, int $year): int
     {
         return cal_days_in_month($calendar, $month, $year);
     }
@@ -28,7 +28,7 @@ class Calendar
      * @param int $calendar 要转换成的历法
      * @return array
      */
-    public static function fromJd($jd, $calendar)
+    public static function fromJd(int $jd, int $calendar): array
     {
         return cal_from_jd($jd, $calendar);
     }
@@ -41,7 +41,7 @@ class Calendar
      * @param int $calendar 返回信息所指定的历法名称
      * @return array
      */
-    public static function info($calendar = -1)
+    public static function info(int $calendar = -1): array
     {
         return cal_info($calendar);
     }
@@ -63,7 +63,7 @@ class Calendar
      * @param int $year     数字形式的年份
      * @return int
      */
-    public static function toJd($calendar, $month, $day, $year)
+    public static function toJd(int $calendar, int $month, int $day, int $year): int
     {
         return cal_to_jd($calendar, $month, $day, $year);
     }
@@ -73,10 +73,10 @@ class Calendar
      *
      * 参数 `$year` :
      *   缺省的默认值是当年。
-     * @param int $year 1970年至2037年之间的数字形式的年份
+     * @param int|null $year 1970年至2037年之间的数字形式的年份
      * @return int
      */
-    public static function easterDate($year = null)
+    public static function easterDate(int $year = null): int
     {
         if ($year) {
             return easter_date($year);
@@ -89,11 +89,11 @@ class Calendar
      *
      * 参数 `$method` :
      *   更多可用的常量参考 calendar constants
-     * @param int $year   正数形式的年份
-     * @param int $method 方式
+     * @param int|null $year   正数形式的年份
+     * @param int      $method 方式
      * @return int
      */
-    public static function easterDays($year = null, $method = 0)
+    public static function easterDays(int $year = null, int $method = 0): int
     {
         if ($year) {
             return easter_days($year, $method);
@@ -108,7 +108,7 @@ class Calendar
      * @param int $year  年份的范围是 1 到 14。
      * @return int
      */
-    public static function frenchToJd($month, $day, $year)
+    public static function frenchToJd(int $month, int $day, int $year): int
     {
         return frenchtojd($month, $day, $year);
     }
@@ -120,7 +120,7 @@ class Calendar
      * @param int $year  年份的范围是 -4714 到 9999。
      * @return int
      */
-    public static function gregorianToJd($month, $day, $year)
+    public static function gregorianToJd(int $month, int $day, int $year): int
     {
         return gregoriantojd($month, $day, $year);
     }
@@ -129,9 +129,9 @@ class Calendar
      * 返回星期的日期
      * @param int $julianday 一个 julian 天数。
      * @param int $mode      0、1、2
-     * @return mixed
+     * @return string|int
      */
-    public static function jdDayOfWeek($julianday, $mode = 0)
+    public static function jdDayOfWeek(int $julianday, int $mode = 0)
     {
         return jddayofweek($julianday, $mode);
     }
@@ -142,7 +142,7 @@ class Calendar
      * @param int $mode      指定使用哪种历法和月份名称的形式
      * @return string
      */
-    public static function jdMonthName($julianday, $mode)
+    public static function jdMonthName(int $julianday, int $mode): string
     {
         return jdmonthname($julianday, $mode);
     }
@@ -152,7 +152,7 @@ class Calendar
      * @param int $juliandaycount 一个 julian 天数
      * @return string
      */
-    public static function jdToFrench($juliandaycount)
+    public static function jdToFrench(int $juliandaycount): string
     {
         return jdtofrench($juliandaycount);
     }
@@ -162,7 +162,7 @@ class Calendar
      * @param int $julianday 一个 julian 天数
      * @return string
      */
-    public static function jdToGregorian($julianday)
+    public static function jdToGregorian(int $julianday): string
     {
         return jdtogregorian($julianday);
     }
@@ -177,7 +177,7 @@ class Calendar
      * @param int  $fl             希伯莱语的格式
      * @return string
      */
-    public static function jdToJewish($juliandaycount, $hebrew = false, $fl = 0)
+    public static function jdToJewish(int $juliandaycount, bool $hebrew, int $fl = 0): string
     {
         return jdtojewish($juliandaycount, $hebrew, $fl);
     }
@@ -187,7 +187,7 @@ class Calendar
      * @param int $julianday 一个 julian 天数
      * @return string
      */
-    public static function jdToJulian($julianday)
+    public static function jdToJulian(int $julianday): string
     {
         return jdtojulian($julianday);
     }
@@ -197,7 +197,7 @@ class Calendar
      * @param int $jday 一个在 2440588 到 2465342 之间的 julian 天数
      * @return int
      */
-    public static function jdToUnix($jday)
+    public static function jdToUnix(int $jday): int
     {
         return jdtounix($jday);
     }
@@ -209,7 +209,7 @@ class Calendar
      * @param int $year  在1到9999之间的年份
      * @return int
      */
-    public static function jewishToJd($month, $day, $year)
+    public static function jewishToJd(int $month, int $day, int $year): int
     {
         return jewishtojd($month, $day, $year);
     }
@@ -221,7 +221,7 @@ class Calendar
      * @param int $year  年份的范围从 -4713 到 9999
      * @return int
      */
-    public static function julianToJd($month, $day, $year)
+    public static function julianToJd(int $month, int $day, int $year): int
     {
         return juliantojd($month, $day, $year);
     }
@@ -231,7 +231,7 @@ class Calendar
      * @param int $timestamp 一个用于转变的时间戳
      * @return int
      */
-    public static function unixToJd($timestamp = 0)
+    public static function unixToJd(int $timestamp = 0): int
     {
         return unixtojd($timestamp);
     }
