@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpComposerExtensionStubsInspection */
 
 namespace fize\datetime;
 
@@ -177,7 +177,7 @@ class Calendar
      * @param int  $fl             希伯莱语的格式
      * @return string
      */
-    public static function jdToJewish(int $juliandaycount, bool $hebrew, int $fl = 0): string
+    public static function jdToJewish(int $juliandaycount, bool $hebrew = false, int $fl = 0): string
     {
         return jdtojewish($juliandaycount, $hebrew, $fl);
     }
