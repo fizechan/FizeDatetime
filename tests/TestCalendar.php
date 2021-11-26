@@ -1,6 +1,8 @@
 <?php
 
-use fize\datetime\Calendar;
+namespace Tests;
+
+use Fize\Datetime\Calendar;
 use PHPUnit\Framework\TestCase;
 
 class TestCalendar extends TestCase

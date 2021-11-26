@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\datetime;
+namespace Fize\Datetime;
 
 use DateTime;
 
@@ -139,10 +139,10 @@ class Date extends DateTime
         list($sYear, $sMonth) = explode('-', $date);
         $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
         $nextDate = date("Y-m-d", strtotime("+" . ($months) . " month", strtotime($date)));
-        $currDate = $nextDate > $monthend ? $monthend : $nextDate;
+        $currDate = min($nextDate, $monthend);
         if ($days) {
             $currDate = date("Y-m-d", strtotime("+" . ($days) . " day", strtotime($currDate)));
         }
-        return $currDate > $monthend ? $monthend : $currDate;
+        return min($currDate, $monthend);
     }
 }

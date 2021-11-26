@@ -1,7 +1,8 @@
 <?php
 
+namespace Tests;
 
-use fize\datetime\Interval;
+use Fize\Datetime\Interval;
 use PHPUnit\Framework\TestCase;
 
 class TestInterval extends TestCase

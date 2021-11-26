@@ -1,6 +1,6 @@
 <?php
 
-namespace fize\datetime;
+namespace Fize\Datetime;
 
 use DateInterval;
 use DateTime;

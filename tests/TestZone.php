@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests;
+
+use DateTime;
+use Fize\Datetime\Zone;
 use PHPUnit\Framework\TestCase;
-use fize\datetime\Zone;
 
 class TestZone extends TestCase
 {

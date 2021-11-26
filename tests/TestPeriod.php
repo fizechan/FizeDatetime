@@ -1,7 +1,11 @@
 <?php
 
+namespace Tests;
 
-use fize\datetime\Period;
+use DateInterval;
+use DateTime;
+use DateTimeZone;
+use Fize\Datetime\Period;
 use PHPUnit\Framework\TestCase;
 
 class TestPeriod extends TestCase

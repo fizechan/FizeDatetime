@@ -1,6 +1,6 @@
-<?php /** @noinspection PhpComposerExtensionStubsInspection */
+<?php
 
-namespace fize\datetime;
+namespace Fize\Datetime;
 
 /**
  * 历法

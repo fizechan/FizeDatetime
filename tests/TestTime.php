@@ -1,7 +1,8 @@
 <?php
 
+namespace Tests;
 
-use fize\datetime\Time;
+use Fize\Datetime\Time;
 use PHPUnit\Framework\TestCase;
 
 class TestTime extends TestCase
