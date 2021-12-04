@@ -2,7 +2,9 @@
 
 namespace Fize\Datetime;
 
-use DateTime;
+use DateInterval;
+use DatePeriod;
+use DateTime as DT;
 
 /**
  * 日期
@@ -128,21 +130,101 @@ class Date extends DateTime
     }
 
     /**
-     * 获取日期在指定时间后的对应日期，该月没有这一天时则为最后一天。
+     * 获取日期在指定时间前后的对应日期，该月没有这一天时则为最后一天。
      * @param string $date   日期，格式Y-m-d
-     * @param int    $months 月数
-     * @param int    $days   天数
+     * @param int    $months 月数,负数表示时间之前
+     * @param int    $days   天数,负数表示时间之前，如果计算得为负数，则取当月第一天
      * @return string
      */
-    public static function getAfter(string $date, int $months, int $days = 0): string
+    public static function get(string $date, int $months, int $days = 0): string
     {
-        list($sYear, $sMonth) = explode('-', $date);
-        $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
-        $nextDate = date("Y-m-d", strtotime("+" . ($months) . " month", strtotime($date)));
+        [$sYear, $sMonth] = explode('-', $date);
+        if ($months < 0) {
+            $monthend = date("Y-m-d", strtotime(($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
+            $nextDate = date("Y-m-d", strtotime(($months) . " month", strtotime($date)));
+        } else {
+            $monthend = date("Y-m-d", strtotime("+" . ($months + 1) . " month -1 day", strtotime($sYear . '-' . $sMonth . '-01')));
+            $nextDate = date("Y-m-d", strtotime("+" . ($months) . " month", strtotime($date)));
+        }
+
         $currDate = min($nextDate, $monthend);
         if ($days) {
-            $currDate = date("Y-m-d", strtotime("+" . ($days) . " day", strtotime($currDate)));
+            if ($days < 0) {
+                $currDate = date("Y-m-d", strtotime($days . " day", strtotime($currDate)));
+                $monthfst = date("Y-m-01", strtotime($monthend));
+                $currDate = min($currDate, $monthfst);
+            } else {
+                $currDate = date("Y-m-d", strtotime("+" . ($days) . " day", strtotime($currDate)));
+            }
         }
         return min($currDate, $monthend);
+    }
+
+    /**
+     * 获取两个日期间的所有日期
+     * @param string $date_begin 开始日期，(Y-m-d)
+     * @param string $date_end   结束日期，(Y-m-d)
+     * @return array
+     */
+    public static function dates(string $date_begin, string $date_end): array
+    {
+        $dates = [];
+        if ($date_begin > $date_end) {
+            return $dates;
+        }
+        $start = new DateTime($date_begin);
+        $end = new DateTime($date_end);
+        foreach (new DatePeriod($start, new DateInterval('P1D'), $end) as $d) {
+            /**
+             * @var DateTime $d
+             */
+            $dates[] = $d->format('Y-m-d');
+        }
+        $dates[] = $date_end;
+        return $dates;
+    }
+
+    /**
+     * 获取两个日期相隔的天数
+     * @param string $start_date 开始日期
+     * @param string $end_date   结束日期
+     * @param bool   $days360    是否使用360天制
+     * @return int
+     */
+    public static function days(string $start_date, string $end_date, bool $days360 = false)
+    {
+        $datetime_start = new DateTime($start_date);
+        $datetime_end = new DateTime($end_date);
+        if ($days360) {
+            $year_start = $datetime_start->format('Y');
+            $year_end = $datetime_end->format('Y');
+            $years = (int)$year_end - (int)$year_start;
+            $month_start = $datetime_start->format('m');
+            $month_end = $datetime_end->format('m');
+            $months = (int)$month_end - (int)$month_start;
+            $day_start = $datetime_start->format('d');
+            $day_end = $datetime_end->format('d');
+            $days = (int)$day_end - (int)$day_start;
+            return ($months + $years * 12) * 30 + $days;
+        } else {
+            $diff = $datetime_start->diff($datetime_end);
+            $days = $diff->days;
+            return (int)$days;
+        }
+    }
+
+    /**
+     * 对 DateTime 设置指定日期
+     * @param DT  $dateTime 日期
+     * @param int $day      日期，如果大于当月最后一天，则返回最后一天
+     * @return DT
+     */
+    public static function set(DT $dateTime, int $day): DT
+    {
+        $t = (int)$dateTime->format('t');
+        if ($day > $t) {
+            $day = $t;
+        }
+        return new DT($dateTime->format("Y-m-$day"));
     }
 }

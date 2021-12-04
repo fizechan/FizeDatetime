@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Fize\Datetime\Date;
+use Fize\Datetime\DateTime;
 use PHPUnit\Framework\TestCase;
 
 class TestDate extends TestCase
@@ -94,18 +95,49 @@ class TestDate extends TestCase
         self::assertEquals($idate, date('Y'));
     }
 
-    public function testGetAfter()
+    public function testGet()
     {
-        $date = Date::getAfter('2021-01-30', 1);
+        $date = Date::get('2021-01-30', 1);
         self::assertEquals('2021-02-28', $date);
 
-        $date = Date::getAfter('2021-01-5', 1, 5);
+        $date = Date::get('2021-02-28', -1, 5);
+        self::assertEquals('2021-01-31', $date);
+
+        $date = Date::get('2021-01-5', 1, 5);
         self::assertEquals('2021-02-10', $date);
 
-        $date = Date::getAfter('2021-01-26', 1, 2);
+        $date = Date::get('2021-01-26', 1, 2);
         self::assertEquals('2021-02-28', $date);
 
-        $date = Date::getAfter('2021-01-26', 1, 5);
+        $date = Date::get('2021-01-26', 1, 5);
         self::assertEquals('2021-02-28', $date);
+    }
+
+    public function testDates()
+    {
+        $dates = Date::dates('2021-12-12', '2022-01-21');
+        var_export($dates);
+        self::assertIsArray($dates);
+    }
+
+    public function testDays()
+    {
+        $days = Date::days('2021-12-12', '2022-01-21');
+        var_dump($days);
+        self::assertIsInt($days);
+
+        $days = Date::days('2021-12-12', '2022-01-21', true);
+        var_dump($days);
+        self::assertIsInt($days);
+    }
+
+    public function testSet()
+    {
+        $dt = new DateTime();
+        $dt2 = Date::set($dt, 11);
+        var_export($dt2);
+        $dt3 = Date::set($dt, 32);
+        var_export($dt3);
+        self::assertNotEquals($dt2, $dt3);
     }
 }

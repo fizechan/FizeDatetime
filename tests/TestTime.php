@@ -91,4 +91,11 @@ class TestTime extends TestCase
         var_dump($time);
         self::assertIsInt($time);
     }
+
+    public function testSpan()
+    {
+        $sps = Time::span(time() - 5000000);
+        var_dump($sps);
+        self::assertIsArray($sps);
+    }
 }

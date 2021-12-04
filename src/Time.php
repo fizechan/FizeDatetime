@@ -123,4 +123,74 @@ class Time extends Date
         }
         return strtotime($time, $now);
     }
+
+    /**
+     * 计算两个时间戳之间相差的时间
+     *
+     * 1年以365天计算，1一个月以30天计算。
+     * $span = self::span(60, 182, 'minutes,seconds'); // array('minutes' => 2, 'seconds' => 2)
+     * $span = self::span(60, 182, 'minutes'); // 2
+     *
+     * @param int      $remote timestamp to find the span of
+     * @param int|null $local  timestamp to use as the baseline
+     * @param string   $output formatting string
+     * @return  string   when only a single output is requested
+     * @return  array    associative list of all outputs requested
+     * @from https://github.com/kohana/ohanzee-helpers/blob/master/src/Date.php
+     */
+    public static function span(int $remote, int $local = null, string $output = 'years,months,weeks,days,hours,minutes,seconds')
+    {
+        // Normalize output
+        $output = trim(strtolower($output));
+        if (!$output) {
+            // Invalid output
+            return FALSE;
+        }
+        // Array with the output formats
+        $output = preg_split('/[^a-z]+/', $output);
+        // Convert the list of outputs to an associative array
+        $output = array_combine($output, array_fill(0, count($output), 0));
+        // Make the output values into keys
+        extract(array_flip($output), EXTR_SKIP);
+        if ($local === null) {
+            // Calculate the span from the current time
+            $local = time();
+        }
+        // Calculate timespan (seconds)
+        $timespan = abs($remote - $local);
+        if (isset($output['years'])) {
+            $year = 365 * 24 * 3600;
+            $timespan -= $year * ($output['years'] = (int)floor($timespan / $year));
+        }
+        if (isset($output['months'])) {
+            $month = 30 * 24 * 3600;
+            $timespan -= $month* ($output['months'] = (int)floor($timespan / $month));
+        }
+        if (isset($output['weeks'])) {
+            $week = 7 * 24 * 3600;
+            $timespan -= $week * ($output['weeks'] = (int)floor($timespan / $week));
+        }
+        if (isset($output['days'])) {
+            $day = 24 * 3600;
+            $timespan -= $day * ($output['days'] = (int)floor($timespan / $day));
+        }
+        if (isset($output['hours'])) {
+            $hour = 3600;
+            $timespan -= $hour * ($output['hours'] = (int)floor($timespan / $hour));
+        }
+        if (isset($output['minutes'])) {
+            $minute = 60;
+            $timespan -= $minute * ($output['minutes'] = (int)floor($timespan / $minute));
+        }
+        // Seconds ago, 1
+        if (isset($output['seconds'])) {
+            $output['seconds'] = $timespan;
+        }
+        if (count($output) === 1) {
+            // Only a single output was requested, return it
+            return array_pop($output);
+        }
+        // Return array
+        return $output;
+    }
 }

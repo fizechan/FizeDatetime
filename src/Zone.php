@@ -77,4 +77,38 @@ class Zone extends DateTimeZone
     {
         return timezone_version_get();
     }
+
+    /**
+     * 计算两个时区间相差的时长,单位为秒
+     *
+     * $seconds = self::offset('America/Chicago', 'GMT');
+     *
+     * [!!] A list of time zones that PHP supports can be found at
+     * <http://php.net/timezones>.
+     *
+     * @param string      $remote timezone that to find the offset of
+     * @param string|null $local  timezone used as the baseline
+     * @param int|string       $datetime    UNIX timestamp or date string
+     * @return  int
+     */
+    public static function offset(string $remote, string $local = null, $datetime = 'now'): int
+    {
+        if ($local === null) {
+            // Use the default timezone
+            $local = date_default_timezone_get();
+        }
+        if (is_int($datetime)) {
+            // Convert the timestamp into a string
+            $datetime = date(DateTime::RFC2822, $datetime);
+        }
+        // Create timezone objects
+        $zone_remote = new DateTimeZone($remote);
+        $zone_local = new DateTimeZone($local);
+        // Create date objects from timezones
+        $time_remote = new DateTime($datetime, $zone_remote);
+        $time_local = new DateTime($datetime, $zone_local);
+        // Find the offset
+        $offset = $zone_remote->getOffset($time_remote) - $zone_local->getOffset($time_local);
+        return $offset;
+    }
 }
