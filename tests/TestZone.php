@@ -3,6 +3,7 @@
 namespace Tests;
 
 use DateTime;
+use DateTimeZone;
 use Fize\Datetime\Zone;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +21,7 @@ class TestZone extends TestCase
     public function testSet()
     {
         $dt = new DateTime();
-        $timezone = 'Asia/Shanghai';
+        $timezone = new DateTimeZone('Asia/Shanghai');
         $dt_real = Zone::set($dt, $timezone);
         var_dump($dt_real);
         self::assertIsObject($dt_real);

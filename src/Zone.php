@@ -23,15 +23,12 @@ class Zone extends DateTimeZone
 
     /**
      * 设置时间的时区
-     * @param DateTime $dt       时间
-     * @param mixed    $timezone 时区对象或者时区标识
+     * @param DateTime     $dt       时间
+     * @param DateTimeZone $timezone 时区
      * @return DateTime
      */
-    public static function set(DateTime $dt, $timezone): DateTime
+    public static function set(DateTime $dt, DateTimeZone $timezone): DateTime
     {
-        if (is_string($timezone)) {
-            $timezone = new DateTimeZone($timezone);
-        }
         return $dt->setTimezone($timezone);
     }
 
@@ -86,9 +83,9 @@ class Zone extends DateTimeZone
      * [!!] A list of time zones that PHP supports can be found at
      * <http://php.net/timezones>.
      *
-     * @param string      $remote timezone that to find the offset of
-     * @param string|null $local  timezone used as the baseline
-     * @param int|string       $datetime    UNIX timestamp or date string
+     * @param string      $remote   timezone that to find the offset of
+     * @param string|null $local    timezone used as the baseline
+     * @param int|string  $datetime UNIX timestamp or date string
      * @return  int
      */
     public static function offset(string $remote, string $local = null, $datetime = 'now'): int

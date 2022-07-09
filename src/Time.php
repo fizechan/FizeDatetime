@@ -134,8 +134,7 @@ class Time extends Date
      * @param int      $remote timestamp to find the span of
      * @param int|null $local  timestamp to use as the baseline
      * @param string   $output formatting string
-     * @return  string   when only a single output is requested
-     * @return  array    associative list of all outputs requested
+     * @return  array|string   when only a single output is requested, associative list of all outputs requested
      * @from https://github.com/kohana/ohanzee-helpers/blob/master/src/Date.php
      */
     public static function span(int $remote, int $local = null, string $output = 'years,months,weeks,days,hours,minutes,seconds')

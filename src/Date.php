@@ -99,6 +99,7 @@ class Date extends DateTime
 
     /**
      * 取得日期／时间信息
+     * @deprecated 请直接使用getdate函数
      * @param int|null $timestamp 一个 integer 的 Unix 时间戳
      * @return array
      */
@@ -109,9 +110,10 @@ class Date extends DateTime
 
     /**
      * 格式化一个 GMT/UTC 日期／时间
+     * @deprecated 请直接使用gmdate函数
      * @param string   $format    格式化
      * @param int|null $timestamp 时间戳
-     * @return string 失败时返回false
+     * @return string|false 失败时返回false
      */
     public static function gmdate(string $format, int $timestamp = null): string
     {
@@ -120,6 +122,7 @@ class Date extends DateTime
 
     /**
      * 将本地时间日期格式化为整数
+     * @deprecated 请直接使用idate函数
      * @param string   $format    格式化
      * @param int|null $timestamp 时间戳
      * @return int
