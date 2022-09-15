@@ -264,8 +264,7 @@ class ChineseCalendar
             $nofd[$i] = floor($nm[$i + 1] + 0.5) - floor($nm[$i] + 0.5); // 每月天数,加0.5是因JD以正午起算
         }
 
-        $dy = 0; // 当月天数
-
+        // 当月天数
         if ($isLeap) { // 闰月
             if ($leap < 3) { // 而旗标非闰月或非本年闰月,则表示此年不含闰月.leap=0代表无闰月,=1代表闰月为前一年的11月,=2代表闰月为前一年的12月
                 throw new InvalidArgumentException('该年无闰月'); // 该年不是闰年
@@ -349,8 +348,6 @@ class ChineseCalendar
             $A = $Z + $IntervalDays + $a - floor($a / 4);
         }
 
-        $dayF = 1.0;
-        $E = 0.0;
         $k = 0;
         while (true) {
             $B = $A + 1524; // 以BC4717年3月1日0时为历元
@@ -366,7 +363,7 @@ class ChineseCalendar
         $month = $E < 14 ? $E - 1 : $E - 13; // 月
         $year = $month > 2 ? $C - 4716 : $C - 4715; // 年
         $dayF += $k;
-        if (intval($dayF, 10) === 0) $dayF += 1;
+        if (intval($dayF) === 0) $dayF += 1;
 
         // 天数分开成天与时分秒
         $day = floor($dayF); // 天
@@ -425,7 +422,7 @@ class ChineseCalendar
                 // 若阴历腊月起始日大於冬至中气日,且阴历正月起始日小于或等于大寒中气日,则此月为闰月,其余同理
                 if (floor($nm[$i] + 0.5) > floor($zq[$i - 1 - $yz] + 0.5)
                     && floor($nm[$i + 1] + 0.5) <= floor($zq[$i - $yz] + 0.5)) {
-                    $mc[$i] = floatval($i - 0.5);
+                    $mc[$i] = $i - 0.5;
                     $yz = 1; // 标示遇到闰月
                 } else {
                     $mc[$i] = floatval($i - $yz); // 遇到闰月开始,每个月号要减1
@@ -440,7 +437,7 @@ class ChineseCalendar
                 // 若次一阴历腊月起始日大于附近的冬至中气日,且农历正月起始日小于或等于大寒中气日,则此月为腊月,次一正月同理.
                 if (($nm[$i] + 0.5) > floor($zq[$i - 1 - $yz] + 0.5)
                     && floor($nm[$i + 1] + 0.5) <= floor($zq[$i - $yz] + 0.5)) {
-                    $mc[$i] = floatval($i - 0.5);
+                    $mc[$i] = $i - 0.5;
                     $yz = 1; // 标示遇到闰月
                 } else {
                     $mc[$i] = floatval($i - $yz); // 遇到闰月开始,每个月号要减1
@@ -476,7 +473,7 @@ class ChineseCalendar
         // $zq[1] = $lastYearAsts[20] + self::CHINESE_TIME_OFFSET; // 大寒
         // $zq[2] = $lastYearAsts[22] + self::CHINESE_TIME_OFFSET; // 雨水
 
-        $asts = self::adjustedSolarTerms($year, 0, 25); // 求出指定年节气之JD值
+        $asts = self::adjustedSolarTerms($year); // 求出指定年节气之JD值
 
         foreach ($asts as $k => $v) {
             if ($k % 2 != 0) {
@@ -896,7 +893,7 @@ class ChineseCalendar
 
             // 修正dynamical time to Universal time
             // 1为1月，0为前一年12月，-1为前一年11月(当i=0时，i-1代表前一年11月)
-            $tjd[$i] = $tjd[$i] - self::deltaTDays($year, floatval($i - 1.0));
+            $tjd[$i] = $tjd[$i] - self::deltaTDays($year, $i - 1.0);
         }
 
         $jj = 0;
@@ -1006,7 +1003,7 @@ class ChineseCalendar
 
         $jdn = $d + floor((153 * $m + 2) / 5) + 365 * $y + floor($y / 4) - floor($y / 100) + floor($y / 400) - 32045;
 
-        return (float)$jdn - 0.5; // jd值是JDN-0.5
+        return $jdn - 0.5; // jd值是JDN-0.5
     }
 
     /**
