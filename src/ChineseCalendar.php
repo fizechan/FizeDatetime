@@ -198,7 +198,7 @@ class ChineseCalendar
 
         [, $nm, $mc] = self::zQandSMandLunarMonthCode($year);
 
-        $jd = self::julianDay($year, $month, $day, 0, 0, 0, 0); // 求出指定年月日之JD值
+        $jd = self::julianDay($year, $month, $day, 0); // 求出指定年月日之JD值
         $jdn = $jd + 0.5; // 加0.5是将起始点从正午改为0时开始
 
         // 如果公历日期的jd小于第一个朔望月新月点，表示农历年份是在公历年份的上一年
